@@ -42,7 +42,7 @@ async function init() {
     const httpServer = createServer(app);
     httpServer.listen(
         { port: PORT },
-        () => console.log(`Hola Mundo API GraphQL http://localhost:${PORT}/graphql`)
+        () => console.log(`Libros API GraphQL http://localhost:${PORT}/graphql`)
     );
 }
 

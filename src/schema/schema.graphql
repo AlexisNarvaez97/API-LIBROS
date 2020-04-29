@@ -1,6 +1,130 @@
-type Query {
-    hello: String!
-    helloWithName(name: String!): String!
-    helloToGraphQLCourse: String!
-    list: [String]
+ type Query {
+    "Obtenemos a todos los usuarios"
+    users: [User!]!
+    "Iniciamos sesión en el CRUD"
+    login(email: String!, password: String!): ResultToken!
+    "Obtener nuestra información con el token"
+    me: ResultUser!
+    "Obtenemos la lista de todos los libros"
+    books: [Book!]!
+    "Obtenemos la lista de todos los autores"
+    authors: [Author!]!
+    "Obtener un author por id"
+    author(id: Int!): Author
+    "Obtener un libro por id"
+    book(id: Int!): Book
+}
+
+type Book {
+    id: Int!
+    name: String!
+    author: [Author!]!
+    author_id: String!
+    editorial: String!
+    year: String!
+    language: String!
+    registerDate: String!
+}
+
+type Author {
+    id: Int!
+    name: String!
+    lastname: String!
+    email: String!
+    registerDate: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  lastname: String!
+  email: String!
+  password: String!
+  registerDate: String!
+}
+
+type Mutation {
+    "Registro de libros en el sistema"
+    registerBook(book: BookInput): ResultBook!
+    "Registro de un autor en el sistema"
+    registerAuthor(author: AuthorInput): ResultAuthor!
+    "Actualizar un libro"
+    updateBook(id: Int!, updateBook: UpdateInput): ResultOperation!
+    "Actualizar un autor"
+    updateAuthor(id: Int!, updateAuthor: UpdateAuthInput): ResultAuthor!
+    "Borrar un libro"
+    deleteBook(id: Int!): ResultBook!
+    "Borrar un author"
+    deleteAuthor(id: Int!): ResultAuthor!
+    "Registro de los usuarios en el sistema"
+    register(user: UserInput): ResultUser!
+}
+
+type Subscription {
+    changeAuthors: [Author!]!
+    changeBooks: [Book!]!
+}
+
+input BookInput {
+    name: String!
+    author_id: String!
+    editorial: String!
+    year: String!
+    language: String!
+}
+
+input AuthorInput {
+    name: String!
+    lastname: String!
+    email: String!
+}
+
+input UserInput {
+  name: String!
+  lastname: String!
+  email: String!
+  password: String!
+}
+
+input UpdateInput {
+    name: String!
+    author_id: String!
+    editorial: String!
+    year: String!
+    language: String!
+}
+
+input UpdateAuthInput {
+    name: String!
+    lastname: String!
+}
+
+type ResultBook {
+    status: Boolean!
+    message: String!
+    book: Book
+}
+
+type ResultAuthor {
+    status: Boolean!
+    message: String!
+    author: Author
+}
+
+type ResultOperation {
+    status: Boolean!
+    message: String!
+    book: Book
+}
+
+type ResultUser {
+  status: Boolean!
+  message: String!
+  user: User
+}
+
+type ResultToken {
+  status: Boolean!
+  message: String!
+  token: String
 }
