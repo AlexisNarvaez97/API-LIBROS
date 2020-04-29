@@ -1,6 +1,15 @@
 import { IResolvers } from 'graphql-tools';
 import { Datetime } from '../lib/datetime';
 import { getBooks, getAuthors, getAuthor } from '../lib/database-operation';
+import { CHANGE_AUTHORS, CHANGE_BOOKS } from '../config/constants';
+
+async function sendNotificationAuthors(pubsub: any, db: any) {
+  pubsub.publish(CHANGE_AUTHORS, { changeAuthors: await getAuthors(db)});
+}
+
+async function sendNotificationBooks(pubsub: any, db: any) {
+  pubsub.publish(CHANGE_BOOKS, { changeBooks: await getBooks(db)});
+}
 
 const mutation: IResolvers = {
   Mutation: {
@@ -33,6 +42,7 @@ const mutation: IResolvers = {
           .collection('books')
           .insertOne(book)
           .then((result: any) => {
+            sendNotificationBooks(pubsub, db);
             return {
               status: true,
               message: `Libro ${book.name} añadido correctamente`,
@@ -81,6 +91,7 @@ const mutation: IResolvers = {
         .collection('authors')
         .insertOne(author)
         .then((result: any) => {
+          sendNotificationAuthors(pubsub, db);
           return {
             status: true,
             message: `Autor ${author.name} añadido correctamente`,
@@ -123,6 +134,7 @@ const mutation: IResolvers = {
             }
           )
           .then(async () => {
+            sendNotificationBooks(pubsub, db);
             return {
               status: true,
               message: 'Libro actualizado',
@@ -163,6 +175,7 @@ const mutation: IResolvers = {
             }
           )
           .then(async () => {
+            sendNotificationAuthors(pubsub, db);
             return {
               status: true,
               message: 'Autor actualizado',
@@ -183,6 +196,7 @@ const mutation: IResolvers = {
         .collection('books')
         .deleteOne({ id })
         .then(async () => {
+          sendNotificationBooks(pubsub, db);
           return {
             status: true,
             message: `El libro con el ID ${id} ha sido borrado`,
@@ -200,6 +214,7 @@ const mutation: IResolvers = {
         .collection('authors')
         .deleteOne({ id })
         .then(async () => {
+          sendNotificationAuthors(pubsub, db);
           return {
             status: true,
             message: `El author con el ID ${id} ha sido borrado`,

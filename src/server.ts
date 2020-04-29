@@ -2,7 +2,7 @@ import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
 import schema from './schema';
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer, PubSub } from 'apollo-server-express';
 import { createServer } from 'http';
 import environments from './config/environments';
 import Database from './config/database';
@@ -14,6 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 async function init() {
     const app = express();
+    const pubsub = new PubSub();
 
     app.use('*', cors());
 
@@ -23,7 +24,7 @@ async function init() {
     const db = await database.init();
 
     const context: any = async() => {
-        return { db };
+        return { db, pubsub };
     };
     
     const server = new ApolloServer({
@@ -40,9 +41,14 @@ async function init() {
 
     const PORT = process.env.PORT || 5300;
     const httpServer = createServer(app);
+    server.installSubscriptionHandlers(httpServer);
     httpServer.listen(
         { port: PORT },
-        () => console.log(`Libros API GraphQL http://localhost:${PORT}/graphql`)
+        () => {
+            console.log('=============SERVER===========');
+            console.log(`API CRUD LIBROS http://localhost:${PORT}${server.graphqlPath}`);
+            console.log(`Subscription ws://localhost:${PORT}${server.subscriptionsPath}`);
+        }
     );
 }
 

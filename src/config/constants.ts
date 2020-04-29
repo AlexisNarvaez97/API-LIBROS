@@ -10,4 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 export const COLLECTIONS = {
     BOOKS: 'books',
     AUTHORS: 'authors'
-}; 
+};
+
+export const CHANGE_AUTHORS = 'CHANGE_AUTHORS';
+export const CHANGE_BOOKS = 'CHANGE_BOOKS';
