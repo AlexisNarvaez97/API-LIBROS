@@ -40,6 +40,7 @@
     "mongodb": "^3.2.7",
     "ncp": "^2.0.0",
     "subscriptions-transport-ws": "^0.9.16",
+    "tslint": "^6.1.2",
     "typescript": "^3.5.2"
   },
   "devDependencies": {
