@@ -1,6 +1,6 @@
 {
     "rules": {
-        "quotemark": [true, "single"],
+        "quotemark": [false, "single"],
         "semicolon": true,
         "curly":true,
         "no-empty-interface": true
