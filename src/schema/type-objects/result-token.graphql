@@ -1,0 +1,5 @@
+type ResultToken {
+  status: Boolean!
+  message: String!
+  token: String
+}

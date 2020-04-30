@@ -1,0 +1,5 @@
+type ResultBook {
+  status: Boolean!
+  message: String!
+  book: Book
+}

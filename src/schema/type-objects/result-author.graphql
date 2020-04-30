@@ -1,0 +1,5 @@
+type ResultAuthor {
+  status: Boolean!
+  message: String!
+  author: Author
+}
