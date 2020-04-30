@@ -3,6 +3,8 @@ import { Datetime } from '../lib/datetime';
 import { getBooks, getAuthors, getAuthor } from '../lib/database-operation';
 import { CHANGE_AUTHORS, CHANGE_BOOKS } from '../config/constants';
 
+import bcryptjs from 'bcryptjs';
+
 async function sendNotificationAuthors(pubsub: any, db: any) {
   pubsub.publish(CHANGE_AUTHORS, { changeAuthors: await getAuthors(db)});
 }
@@ -227,6 +229,48 @@ const mutation: IResolvers = {
           };
         });
     },
+    async register(_: void, { user }, { db }): Promise<any> {
+      const userCheck = await db.collection('users').findOne({email: user.email});
+
+      if (userCheck !== null) {
+        return {
+          status: false,
+          message: `Usuario ya existe`,
+          user: null
+        }
+      }
+      const lastUser = await db
+        .collection("users")
+        .find()
+        .limit(1)
+        .sort({ registerDate: -1 })
+        .toArray();
+
+      if (lastUser.length === 0) {
+        user.id = 1;
+      } else {
+        user.id = lastUser[0].id + 1;
+      }
+      user.password = bcryptjs.hashSync(user.password, 10);
+      user.registerDate = new Datetime().getCurrentDateTime();
+      return await db
+        .collection("users")
+        .insertOne(user)
+        .then((result: any) => {
+          return {
+            status: true,
+            message: `Usuario ${user.name} ${user.lastname} añadido correctamente`,
+            user
+          };
+        })
+        .catch((err: any) => {
+          return {
+            status: false,
+            message: `Usuario NO añadido correctamente`,
+            user: null
+          };
+        });
+    }
   },
 };
 

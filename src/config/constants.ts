@@ -9,7 +9,8 @@ if (process.env.NODE_ENV !== 'production') {
 // Agregando collections de la base de datos.
 export const COLLECTIONS = {
     BOOKS: 'books',
-    AUTHORS: 'authors'
+    AUTHORS: 'authors',
+    USERS: 'users'
 };
 
 export const CHANGE_AUTHORS = 'CHANGE_AUTHORS';

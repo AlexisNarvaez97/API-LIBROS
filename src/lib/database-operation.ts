@@ -16,3 +16,7 @@ export async function getAuthor(db: any, id: number) {
 export async function getBook(db: any, id: number) {
     return await db.collection(COLLECTIONS.BOOKS).findOne({ id });
 }
+
+export async function getUsers(db: any) {
+    return await db.collection(COLLECTIONS.USERS).find().toArray();
+}
