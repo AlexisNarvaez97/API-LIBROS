@@ -1,9 +1,4 @@
 
-type Subscription {
-    changeAuthors: [Author!]!
-    changeBooks: [Book!]!
-}
-
 type ResultBook {
     status: Boolean!
     message: String!

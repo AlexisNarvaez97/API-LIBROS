@@ -1,0 +1,4 @@
+type Subscription {
+  changeAuthors: [Author!]!
+  changeBooks: [Book!]!
+}
