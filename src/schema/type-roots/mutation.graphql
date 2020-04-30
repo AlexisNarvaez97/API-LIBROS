@@ -1,0 +1,16 @@
+type Mutation {
+  "Registro de libros en el sistema"
+  registerBook(book: BookInput): ResultBook!
+  "Registro de un autor en el sistema"
+  registerAuthor(author: AuthorInput): ResultAuthor!
+  "Actualizar un libro"
+  updateBook(id: Int!, updateBook: UpdateInput): ResultOperation!
+  "Actualizar un autor"
+  updateAuthor(id: Int!, updateAuthor: UpdateAuthInput): ResultAuthor!
+  "Borrar un libro"
+  deleteBook(id: Int!): ResultBook!
+  "Borrar un author"
+  deleteAuthor(id: Int!): ResultAuthor!
+  "Registro de los usuarios en el sistema"
+  register(user: UserInput): ResultUser!
+}

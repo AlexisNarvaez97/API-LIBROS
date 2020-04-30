@@ -1,0 +1,16 @@
+type Query {
+  "Obtenemos a todos los usuarios"
+  users: [User!]!
+  "Iniciamos sesión en el CRUD"
+  login(email: String!, password: String!): ResultToken!
+  "Obtener nuestra información con el token"
+  me: ResultUser!
+  "Obtenemos la lista de todos los libros"
+  books: [Book!]!
+  "Obtenemos la lista de todos los autores"
+  authors: [Author!]!
+  "Obtener un author por id"
+  author(id: Int!): Author
+  "Obtener un libro por id"
+  book(id: Int!): Book
+}

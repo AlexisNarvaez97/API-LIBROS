@@ -1,19 +1,4 @@
- type Query {
-    "Obtenemos a todos los usuarios"
-    users: [User!]!
-    "Iniciamos sesión en el CRUD"
-    login(email: String!, password: String!): ResultToken!
-    "Obtener nuestra información con el token"
-    me: ResultUser!
-    "Obtenemos la lista de todos los libros"
-    books: [Book!]!
-    "Obtenemos la lista de todos los autores"
-    authors: [Author!]!
-    "Obtener un author por id"
-    author(id: Int!): Author
-    "Obtener un libro por id"
-    book(id: Int!): Book
-}
+
 
 type Book {
     id: Int!
@@ -41,23 +26,6 @@ type User {
   email: String!
   password: String!
   registerDate: String!
-}
-
-type Mutation {
-    "Registro de libros en el sistema"
-    registerBook(book: BookInput): ResultBook!
-    "Registro de un autor en el sistema"
-    registerAuthor(author: AuthorInput): ResultAuthor!
-    "Actualizar un libro"
-    updateBook(id: Int!, updateBook: UpdateInput): ResultOperation!
-    "Actualizar un autor"
-    updateAuthor(id: Int!, updateAuthor: UpdateAuthInput): ResultAuthor!
-    "Borrar un libro"
-    deleteBook(id: Int!): ResultBook!
-    "Borrar un author"
-    deleteAuthor(id: Int!): ResultAuthor!
-    "Registro de los usuarios en el sistema"
-    register(user: UserInput): ResultUser!
 }
 
 type Subscription {
