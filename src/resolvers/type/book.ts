@@ -1,7 +1,7 @@
 import { IResolvers } from 'graphql-tools';
-import { getAuthors } from '../lib/database-operation';
+import { getAuthors } from '../../lib/database-operation';
 
-const type: IResolvers = {
+const typeBook: IResolvers = {
     Book: {
       author: async function(parent: any, __: any, { db }) {
         let listaAutor: Array<any> = [];
@@ -17,5 +17,5 @@ const type: IResolvers = {
     }
   };
   
-  export default type;
+  export default typeBook;
   
