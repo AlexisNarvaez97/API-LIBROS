@@ -1,5 +1,5 @@
 import { IResolvers } from 'graphql-tools';
-import { getBooks, getAuthors, getAuthor, getBook } from '../lib/database-operation';
+import { getBooks, getAuthors, getAuthor, getBook, getUsers } from '../lib/database-operation';
 
 const query: IResolvers = {
     Query: {
@@ -14,6 +14,9 @@ const query: IResolvers = {
           },
           async book(_: void, { id }, { db }) {
             return await getBook(db, id);
+          },
+          async users(_: void, __: any, { db }): Promise<any> {
+            return await getUsers(db);
           },
     }
 };
