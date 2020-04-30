@@ -1,29 +1,10 @@
 import { IResolvers } from 'graphql-tools';
-import {
-  getBooks,
-  getAuthors,
-  getAuthor,
-  getBook,
-  getUsers,
-} from '../lib/database-operation';
-
 import bcryptjs from 'bcryptjs';
-import JWT from '../lib/jwt';
+import { getUsers } from '../../lib/database-operation';
+import JWT from '../../lib/jwt';
 
-const query: IResolvers = {
+const queryUsers: IResolvers = {
   Query: {
-    async books(_: void, __: any, { db }): Promise<any> {
-      return await getBooks(db);
-    },
-    async authors(_: void, __: any, { db }): Promise<any> {
-      return await getAuthors(db);
-    },
-    async author(_: void, { id }, { db }) {
-      return await getAuthor(db, id);
-    },
-    async book(_: void, { id }, { db }) {
-      return await getBook(db, id);
-    },
     async users(_: void, __: any, { db }): Promise<any> {
       return await getUsers(db);
     },
@@ -74,4 +55,4 @@ const query: IResolvers = {
   },
 };
 
-export default query;
+export default queryUsers;
