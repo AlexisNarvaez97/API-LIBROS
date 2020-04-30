@@ -1,0 +1,15 @@
+input BookInput {
+  name: String!
+  author_id: String!
+  editorial: String!
+  year: String!
+  language: String!
+}
+
+input UpdateInputBook {
+  name: String!
+  author_id: String!
+  editorial: String!
+  year: String!
+  language: String!
+}

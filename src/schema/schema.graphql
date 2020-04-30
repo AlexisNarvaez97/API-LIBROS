@@ -4,40 +4,6 @@ type Subscription {
     changeBooks: [Book!]!
 }
 
-input BookInput {
-    name: String!
-    author_id: String!
-    editorial: String!
-    year: String!
-    language: String!
-}
-
-input AuthorInput {
-    name: String!
-    lastname: String!
-    email: String!
-}
-
-input UserInput {
-  name: String!
-  lastname: String!
-  email: String!
-  password: String!
-}
-
-input UpdateInputBook {
-    name: String!
-    author_id: String!
-    editorial: String!
-    year: String!
-    language: String!
-}
-
-input UpdateInputAuthor {
-    name: String!
-    lastname: String!
-}
-
 type ResultBook {
     status: Boolean!
     message: String!

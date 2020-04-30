@@ -1,0 +1,10 @@
+input AuthorInput {
+  name: String!
+  lastname: String!
+  email: String!
+}
+
+input UpdateInputAuthor {
+  name: String!
+  lastname: String!
+}
