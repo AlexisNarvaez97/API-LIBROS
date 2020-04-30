@@ -23,8 +23,10 @@ async function init() {
     const database = new Database();
     const db = await database.init();
 
-    const context: any = async() => {
-        return { db, pubsub };
+    const context: any = async({req, connection}: any) => {
+        // Agregando al contexto el token para añadirlo en headers por authorization.
+        const token = req ? req.headers.authorization : connection.authorization;
+        return { db, pubsub, token };
     };
     
     const server = new ApolloServer({
