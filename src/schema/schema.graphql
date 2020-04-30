@@ -1,33 +1,4 @@
 
-
-type Book {
-    id: Int!
-    name: String!
-    author: [Author!]!
-    author_id: String!
-    editorial: String!
-    year: String!
-    language: String!
-    registerDate: String!
-}
-
-type Author {
-    id: Int!
-    name: String
-    lastname: String
-    email: String!
-    registerDate: String!
-}
-
-type User {
-  id: ID!
-  name: String!
-  lastname: String!
-  email: String!
-  password: String!
-  registerDate: String!
-}
-
 type Subscription {
     changeAuthors: [Author!]!
     changeBooks: [Book!]!
@@ -54,7 +25,7 @@ input UserInput {
   password: String!
 }
 
-input UpdateInput {
+input UpdateInputBook {
     name: String!
     author_id: String!
     editorial: String!
@@ -62,7 +33,7 @@ input UpdateInput {
     language: String!
 }
 
-input UpdateAuthInput {
+input UpdateInputAuthor {
     name: String!
     lastname: String!
 }
@@ -77,12 +48,6 @@ type ResultAuthor {
     status: Boolean!
     message: String!
     author: Author
-}
-
-type ResultOperation {
-    status: Boolean!
-    message: String!
-    book: Book
 }
 
 type ResultUser {

@@ -1,0 +1,7 @@
+type Author {
+  id: Int!
+  name: String
+  lastname: String
+  email: String!
+  registerDate: String!
+}

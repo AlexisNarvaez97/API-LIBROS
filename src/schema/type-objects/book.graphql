@@ -1,0 +1,10 @@
+type Book {
+  id: Int!
+  name: String!
+  author: [Author!]!
+  author_id: String!
+  editorial: String!
+  year: String!
+  language: String!
+  registerDate: String!
+}
