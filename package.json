@@ -41,7 +41,7 @@
     "graphql-playground-middleware-express": "^1.7.12",
     "graphql-tools": "^4.0.5",
     "http": "0.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "merge-graphql-schemas": "^1.7.8",
     "mongodb": "^3.2.7",
     "ncp": "^2.0.0",
